@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÝKUPNEMOVITOSTI.cz | powered by KOVA GROUP</title>
+
+    <meta name="description" content="Vykoupíme vaši nemovitost nebo podíl za nejvyšší možnou cenu. Okamžitá záloha až 3 mil. Kč. Získejte nezávaznou nabídku do 24 hodin. Jsme specialisté na složité případy.">
+    <meta name="keywords" content="výkup nemovitostí, KOVA Group, rychlý prodej domu, výkup bytu, výkup podílu, výkup pozemku, nemovitost v exekuci, zpětný leasing nemovitosti, okamžitá platba, realitní služby">
+    <meta name="author" content="VÝKUPNEMOVITOSTI.cz by KOVA Group">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vykup-nemovitosti.cz/">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏆</text></svg>">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "RealEstateAgent",
+        "name": "VÝKUPNEMOVITOSTI.cz by KOVA Group",
+        "description": "Profesionální a rychlý výkup všech typů nemovitostí a podílů po celé ČR, včetně nemovitostí s právními vadami. Férové ceny, okamžitá záloha, peníze ihned a kompletní právní servis zdarma.",
+        "url": "https://www.vykup-nemovitosti.cz/",
+        "telephone": "+420770156156",
+        "email": "info@nemovitostnivykupy.cz",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "U Rustonky 714/1",
+            "addressLocality": "Praha 8",
+            "addressCountry": "CZ"
+        },
+        "areaServed": "CZ",
+        "serviceType": [
+            "Výkup nemovitostí",
+            "Výkup spoluvlastnických podílů",
+            "Řešení exekucí na nemovitosti",
+            "Zpětný leasing nemovitostí"
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+
+    <style>
+        :root {
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Manrope', sans-serif;
+            --color-light: #FBFBFB;
+            --color-dark: #0A0A0A;
+            --color-accent: #DAA520;
+            --color-muted: rgba(251, 251, 251, 0.65);
+            --color-border: rgba(251, 251, 251, 0.15);
+            --color-dark-muted: rgba(10, 10, 10, 0.5);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-display { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
+        .text-accent { color: var(--color-accent); }
+        .bg-accent { background-color: var(--color-accent); }
+        .border-accent { border-color: var(--color-accent); }
+
+        /* --- Global Elements --- */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--color-accent);
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button .text-original { display: inline-block; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .cta-button .text-hover { position: absolute; top: 100%; left: 0; right: 0; transform: translateY(10px); display: inline-block; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-accent);
+        }
+        .cta-button:hover .text-original { transform: translateY(-150%); }
+        .cta-button:hover .text-hover { transform: translateY(0); top: 50%; transform: translateY(-50%); }
+
+        .section-intro-line {
+            width: 80px;
+            height: 2px;
+            background-color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .gsap-reveal { opacity: 0; transform: translateY(60px); }
+        .gsap-reveal-line { opacity: 0; transform: scaleX(0); transform-origin: left; }
+        .split-word { display: inline-block; overflow: hidden; }
+        .split-word > span { display: inline-block; transform: translateY(110%); }
+
+        /* --- Header --- */
+        header { transition: background-color 0.4s ease-in-out; }
+        header.scrolled { background-color: rgba(10, 10, 10, 0.7); backdrop-filter: blur(10px); }
+
+        /* --- Vertical Fixed Navigation --- */
+        .vertical-nav {
+            position: fixed;
+            right: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--color-muted);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .nav-dot:hover { border-color: var(--color-light); transform: scale(1.3); }
+        .nav-dot.active { background-color: var(--color-accent); border-color: var(--color-accent); transform: scale(1.5); }
+        .nav-dot .tooltip {
+            position: absolute; right: 25px; top: 50%; transform: translateY(-50%); white-space: nowrap; color: var(--color-light);
+            background-color: var(--color-dark); padding: 0.3rem 0.8rem; border-radius: 4px; opacity: 0; visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-dot:hover .tooltip { opacity: 1; visibility: visible; right: 30px; }
+        @media (max-width: 1024px) { .vertical-nav { display: none; } }
+
+        /* --- Hero Section --- */
+        .hero-video-wrapper {
+            position: absolute; inset: 0; overflow: hidden;
+        }
+        .hero-video-wrapper::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 1) 5%, rgba(10, 10, 10, 0.8) 30%, transparent 100%);
+        }
+        .hero-video-wrapper video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
+
+        /* --- Services (What we buy) Section --- */
+        .service-card {
+            background-color: var(--color-dark);
+            border: 1px solid var(--color-border);
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            background-color: #1a1a1a;
+            border-color: rgba(218, 165, 32, 0.5);
+        }
+        .service-card-icon {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .complex-case-item {
+            border-bottom: 1px solid var(--color-border);
+            transition: background-color 0.3s ease;
+        }
+        .complex-case-item:hover {
+            background-color: var(--color-dark-muted);
+        }
+        .complex-case-item .icon {
+            color: var(--color-accent);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+         .complex-case-item:hover .icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        /* --- Benefits Section (Horizontal Scroll) --- */
+        #benefits-section { overflow: hidden; }
+        #benefits-container { width: 500%; height: 100vh; display: flex; flex-wrap: nowrap; } /* 5 panels */
+        .benefit-panel { width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; padding: 5%; }
+        .benefit-content { display: flex; align-items: center; gap: 4rem; }
+        .benefit-number { font-family: var(--font-display); font-size: 10rem; line-height: 1; color: var(--color-border); }
+        @media (max-width: 768px) {
+            #benefits-container { height: auto; flex-direction: column; width: 100%; }
+            .benefit-panel { height: auto; padding: 15% 5%; flex-direction: column; }
+            .benefit-content { flex-direction: column; text-align: center; gap: 1rem; }
+            .benefit-number { font-size: 6rem; }
+        }
+
+        /* --- Process Section --- */
+        .timeline-step { position: relative; padding-left: 5rem; padding-bottom: 5rem; }
+        .timeline-line-wrapper { position: absolute; left: 2rem; top: 0; bottom: 0; width: 1px; }
+        .timeline-line { width: 100%; height: 100%; background: var(--color-border); transform-origin: top; transform: scaleY(0); }
+        .timeline-number {
+            font-family: var(--font-display); font-size: 4rem; line-height: 1; position: absolute; left: -1rem; top: 0;
+            color: var(--color-accent); opacity: 0.2; transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .timeline-step.is-in-view .timeline-number { opacity: 1; transform: scale(1.1); }
+        @media (max-width: 768px) { .timeline-step { padding-left: 3rem; } .timeline-number { left: -1rem; font-size: 3rem; } }
+
+        /* --- FAQ Section --- */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .faq-icon { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* --- Form --- */
+        .form-group { position: relative; }
+        .form-input {
+            width: 100%; padding: 1.2rem 0; border: none; border-bottom: 1px solid var(--color-border);
+            background-color: transparent; font-size: 1rem; color: var(--color-light); transition: border-color 0.3s ease;
+            -webkit-appearance: none; position: relative; z-index: 1;
+        }
+        .form-label {
+            position: absolute; left: 0; top: 1.2rem; color: var(--color-muted);
+            pointer-events: none; transition: all 0.3s ease;
+        }
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            top: -0.5rem; font-size: 0.75rem; color: var(--color-accent);
+        }
+        .form-input:focus { outline: none; border-color: var(--color-accent); }
+        textarea.form-input { resize: none; }
+
+        /* --- Footer --- */
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            color: var(--color-muted);
+            transition: color 0.3s ease;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--color-accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .footer-link:hover { color: var(--color-light); }
+        .footer-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+    </style>
+</head>
+<body class="bg-dark text-light">
+
+    <nav class="vertical-nav">
+        <a href="#hero" class="nav-dot active" data-section="hero"><span class="tooltip">Start</span></a>
+        <a href="#about" class="nav-dot" data-section="about"><span class="tooltip">O skupině KOVA</span></a>
+        <a href="#services" class="nav-dot" data-section="services"><span class="tooltip">Co vykupujeme</span></a>
+        <a href="#benefits" class="nav-dot" data-section="benefits"><span class="tooltip">Naše výhody</span></a>
+        <a href="#process" class="nav-dot" data-section="process"><span class="tooltip">Proces</span></a>
+        <a href="#contact" class="nav-dot" data-section="contact"><span class="tooltip">Kontakt</span></a>
+    </nav>
+
+    <header class="fixed top-0 left-0 w-full z-40 p-6 md:p-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-display tracking-wide">VÝKUPNEMOVITOSTI.cz</a>
+            <a href="#contact" class="cta-button hidden md:inline-block">
+                <span class="text-original">Nezávazná nabídka</span>
+                <span class="text-hover">Začít zde</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+            <div class="hero-video-wrapper">
+                 <video playsinline autoplay muted loop poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" id="heroVideo">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-and-modern-house-exterior-at-dusk-3983-large.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="relative z-10 container mx-auto px-6">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold">
+                    <span class="split-word"><span>Prodejte</span></span> <span class="split-word"><span>svou</span></span> <span class="split-word"><span>nemovitost.</span></span>
+                    <br>
+                    <span class="text-accent split-word"><span>Bez</span></span> <span class="split-word"><span>kompromisů.</span></span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-muted mt-8 gsap-reveal">
+                    Diskrétní a profesionální výkup nemovitostí a podílů po celé ČR. Získejte férovou tržní cenu a peníze na účet v řádu dnů, i v těch nejsložitějších případech.
+                </p>
+            </div>
+        </section>
+        
+        <section id="about" class="py-20 md:py-40">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="gsap-reveal">
+                         <div class="section-intro-line gsap-reveal-line"></div>
+                        <h2 class="text-4xl md:text-6xl mb-8">Více než 20 let na vaší straně</h2>
+                        <p class="text-lg text-muted leading-relaxed mb-6">Jsme KOVA Group, stabilní skupina realitních expertů, právníků a investorů s vášní pro architekturu. Naším posláním je dávat nemovitostem nový život a našim klientům jistotu a okamžitý prospěch. Specializujeme se na rychlý a efektivní výkup, který řeší i "neřešitelné" situace.</p>
+                        <p class="text-muted leading-relaxed mb-8">Věříme v transparentní jednání a budování vztahů na důvěře. Každou nemovitost, kterou získáme, citlivě renovujeme a vracíme ji na trh v té nejlepší kondici.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
+                            <div class="gsap-reveal">
+                                <h4 class="text-xl font-bold text-accent">KOVA výkup</h4>
+                                <p class="text-sm text-muted mt-2">Specializovaný výkup všech typů nemovitostí.</p>
+                            </div>
+                             <div class="gsap-reveal" style="animation-delay: 0.2s;">
+                                <h4 class="text-xl font-bold text-accent">KOVA dražby</h4>
+                                <p class="text-sm text-muted mt-2">Držitel koncese pro provádění veřejných dražeb.</p>
+                            </div>
+                             <div class="gsap-reveal" style="animation-delay: 0.4s;">
+                                <h4 class="text-xl font-bold text-accent">KOVA reality</h4>
+                                <p class="text-sm text-muted mt-2">Klasické realitní služby od A do Z.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="relative h-96 lg:h-[600px] gsap-reveal">
+                        <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tým expertů diskutuje nad architektonickým plánem" class="w-full h-full object-cover parallax-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-40 bg-black/20">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-24">
+                    <div class="section-intro-line mx-auto gsap-reveal-line"></div>
+                    <h2 class="text-4xl md:text-6xl gsap-reveal">Vykoupíme jakoukoliv nemovitost</h2>
+                    <p class="text-lg text-muted mt-6 gsap-reveal">Naše expertíza pokrývá vše od standardních bytů po komplikované případy zatížené dluhy. Pro každou situaci máme řešení.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="gsap-reveal">
+                        <h3 class="font-display text-3xl mb-8">Běžné typy nemovitostí</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="service-card">
+                                <span class="service-card-icon">🏢</span>
+                                <h4 class="text-xl font-semibold mb-2">Byty a podíly</h4>
+                                <p class="text-muted text-sm">V osobním i družstevním vlastnictví, s nájemníkem, před privatizací.</p>
+                            </div>
+                            <div class="service-card">
+                                <span class="service-card-icon">🏡</span>
+                                <h4 class="text-xl font-semibold mb-2">Domy a chaty</h4>
+                                <p class="text-muted text-sm">Rodinné a činžovní domy, rozestavěné, chaty, chalupy.</p>
+                            </div>
+                            <div class="service-card">
+                                <span class="service-card-icon">🌳</span>
+                                <h4 class="text-xl font-semibold mb-2">Pozemky a lesy</h4>
+                                <p class="text-muted text-sm">Stavební parcely, zemědělská půda, lesy i vodní plochy.</p>
+                            </div>
+                            <div class="service-card">
+                                <span class="service-card-icon">🏭</span>
+                                <h4 class="text-xl font-semibold mb-2">Komerční objekty</h4>
+                                <p class="text-muted text-sm">Kanceláře, garáže, sklady, výrobní haly, restaurace.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gsap-reveal">
+                        <h3 class="font-display text-3xl mb-8">Specializace na složité případy</h3>
+                        <div class="border-t border-border">
+                            <div class="complex-case-item p-6 flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Nemovitosti v exekuci</h4>
+                                    <p class="text-muted text-sm">Zastavíme dražbu a vyplatíme vaše dluhy.</p>
+                                </div>
+                                <span class="icon text-3xl">⚖️</span>
+                            </div>
+                             <div class="complex-case-item p-6 flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Dluhy a zástavy</h4>
+                                    <p class="text-muted text-sm">Převezmeme komunikaci s věřiteli a bankami.</p>
+                                </div>
+                                 <span class="icon text-3xl">🏦</span>
+                            </div>
+                             <div class="complex-case-item p-6 flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Spoluvlastnické podíly</h4>
+                                    <p class="text-muted text-sm">Odkoupíme váš podíl bez nutnosti dohody s ostatními.</p>
+                                </div>
+                                <span class="icon text-3xl">🤝</span>
+                            </div>
+                             <div class="complex-case-item p-6 flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Věcná břemena</h4>
+                                    <p class="text-muted text-sm">Vykoupíme i nemovitosti s právem dožití a jinými břemeny.</p>
+                                </div>
+                                <span class="icon text-3xl">📜</span>
+                            </div>
+                             <div class="complex-case-item p-6 flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Zpětný leasing</h4>
+                                    <p class="text-muted text-sm">Vykoupíme vaši nemovitost a vy v ní můžete dál bydlet.</p>
+                                </div>
+                                 <span class="icon text-3xl">🔄</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="relative">
+             <div id="benefits-section">
+                <div id="benefits-container">
+                    <div class="benefit-panel">
+                        <div class="benefit-content">
+                            <div class="benefit-number">01</div>
+                            <div class="max-w-md">
+                                <h3 class="text-3xl md:text-4xl font-display mb-4">Nabídka do 24 hodin</h3>
+                                <p class="text-muted text-lg">Po zaslání informací o vaší nemovitosti obdržíte naši nezávaznou cenovou nabídku během jediného dne. Zdarma a bez závazků.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="benefit-panel">
+                        <div class="benefit-content">
+                            <div class="benefit-number">02</div>
+                            <div class="max-w-md">
+                                <h3 class="text-3xl md:text-4xl font-display mb-4">Až 100% tržní ceny</h3>
+                                <p class="text-muted text-lg">Naším cílem je férové ocenění. Nabídneme vám nejvyšší možnou kupní cenu odpovídající reálné hodnotě vaší nemovitosti.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="benefit-panel">
+                        <div class="benefit-content">
+                            <div class="benefit-number">03</div>
+                            <div class="max-w-md">
+                                <h3 class="text-3xl md:text-4xl font-display mb-4">Záloha až 3 mil. Kč</h3>
+                                <p class="text-muted text-lg">Potřebujete peníze ihned? Po dohodě vám okamžitě vyplatíme zálohu z kupní ceny až do výše 3 000 000 Kč.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="benefit-panel">
+                        <div class="benefit-content">
+                            <div class="benefit-number">04</div>
+                            <div class="max-w-md">
+                                <h3 class="text-3xl md:text-4xl font-display mb-4">Žádné poplatky</h3>
+                                <p class="text-muted text-lg">Neplatíte žádné provize ani skryté poplatky. Právní servis, odhady i poplatky na katastru hradíme kompletně my.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="benefit-panel">
+                        <div class="benefit-content">
+                            <div class="benefit-number">05</div>
+                            <div class="max-w-md">
+                                <h3 class="text-3xl md:text-4xl font-display mb-4">Kompletní servis</h3>
+                                <p class="text-muted text-lg">Zajistíme veškerou administrativu, jednání s úřady a exekutory, od přípravy smluv až po vklad na katastr nemovitostí.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="process" class="py-20 md:py-40">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-24">
+                    <div class="section-intro-line mx-auto gsap-reveal-line"></div>
+                    <h2 class="text-4xl md:text-6xl gsap-reveal">Proces výkupu v 5 krocích</h2>
+                    <p class="text-lg text-muted mt-6 gsap-reveal">Navrženo pro maximální efektivitu a vaše pohodlí. Od prvního kontaktu po vyplacení peněz obvykle neuplyne více než pár dní.</p>
+                </div>
+                <div class="max-w-2xl mx-auto relative">
+                    <div class="timeline-line-wrapper"><div class="timeline-line"></div></div>
+                    <div class="timeline-step">
+                        <div class="timeline-number">1</div>
+                        <div class="gsap-reveal">
+                            <h3 class="text-3xl font-display mb-3">Kontaktujte nás</h3>
+                            <p class="text-muted text-lg">Vyplňte formulář, zavolejte nebo napište email. Sdělte nám základní informace o nemovitosti.</p>
+                        </div>
+                    </div>
+                     <div class="timeline-step">
+                        <div class="timeline-number">2</div>
+                        <div class="gsap-reveal">
+                            <h3 class="text-3xl font-display mb-3">Nacenění a nabídka</h3>
+                            <p class="text-muted text-lg">Do 24 hodin od nás zdarma obdržíte nezávaznou cenovou nabídku.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-number">3</div>
+                        <div class="gsap-reveal">
+                            <h3 class="text-3xl font-display mb-3">Smlouva a záloha</h3>
+                            <p class="text-muted text-lg">Připravíme kupní smlouvu. Při podpisu můžeme vyplatit zálohu až 3 mil. Kč.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-number">4</div>
+                        <div class="gsap-reveal">
+                            <h3 class="text-3xl font-display mb-3">Vyřízení administrativy</h3>
+                            <p class="text-muted text-lg">Veškerý právní servis, jednání s úřady a vklady na katastr zařídíme za vás.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step" style="padding-bottom: 0;">
+                        <div class="timeline-number">5</div>
+                        <div class="gsap-reveal">
+                            <h3 class="text-3xl font-display mb-3">Peníze ihned</h3>
+                            <p class="text-muted text-lg">Po podpisu smlouvy vám okamžitě vyplácíme zbytek dohodnuté ceny. Máte po starostech.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-20 md:py-40">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-24">
+                     <div class="section-intro-line mx-auto gsap-reveal-line"></div>
+                     <h2 class="text-4xl md:text-6xl gsap-reveal">Časté dotazy</h2>
+                     <p class="text-lg text-muted mt-6 gsap-reveal">Odpovědi na vše, co vás zajímá. Pro více informací nás neváhejte kontaktovat.</p>
+                 </div>
+                <div class="max-w-4xl mx-auto" id="faq-accordion">
+                    <div class="faq-item border-t border-border py-6 gsap-reveal">
+                        <button class="faq-question w-full flex justify-between items-center text-left text-xl font-semibold">
+                            <span>Jak rychle dostanu nabídku a peníze?</span>
+                            <span class="faq-icon text-accent text-3xl">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="pt-4 text-muted">Cenovou nabídku obdržíte do 24 hodin. Celý prodej jsme schopni zrealizovat do 3 dnů. Peníze (nebo zálohu) vyplácíme ihned při podpisu smlouvy.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item border-t border-border py-6 gsap-reveal">
+                        <button class="faq-question w-full flex justify-between items-center text-left text-xl font-semibold">
+                            <span>Vykupujete i podíly nebo jen celé nemovitosti?</span>
+                            <span class="faq-icon text-accent text-3xl">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="pt-4 text-muted">Ano, specializujeme se na výkup celých nemovitostí i jejich ideálních spoluvlastnických podílů. Jsme schopni efektivně řešit i složité situace s více spoluvlastníky či v rámci dědického řízení.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item border-t border-border py-6 gsap-reveal">
+                        <button class="faq-question w-full flex justify-between items-center text-left text-xl font-semibold">
+                            <span>Moje nemovitost má hypotéku / exekuci. Vadí to?</span>
+                            <span class="faq-icon text-accent text-3xl">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="pt-4 text-muted">Nevadí, naopak je to naše specializace. Postaráme se o kompletní oddlužení nemovitosti. Komunikujeme s bankami, věřiteli i exekutory. Z kupní ceny uhradíme veškeré závazky a zbytek peněz vyplatíme vám na účet.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item border-t border-b border-border py-6 gsap-reveal">
+                        <button class="faq-question w-full flex justify-between items-center text-left text-xl font-semibold">
+                            <span>Jaké dokumenty si mám připravit?</span>
+                            <span class="faq-icon text-accent text-3xl">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p class="pt-4 text-muted">Pro začátek nám stačí základní informace. Pokud chcete proces urychlit, můžete si připravit následující podklady, ale pokud je nemáte, nevadí - vše zařídíme za vás.</p>
+                            <ul class="list-disc list-inside text-muted space-y-2 mt-4">
+                                <li><b>Základní:</b> Výpis z katastru nemovitostí, snímek z katastrální mapy.</li>
+                                <li><b>Nabývací titul:</b> Kupní smlouva, darovací smlouva, nebo usnesení soudu o dědictví.</li>
+                                <li><b>Při zatížení:</b> Dokumenty týkající se exekuce, zástavní smlouvy.</li>
+                                <li><b>U pozemků:</b> Územní plán nebo územní rozhodnutí, stavební povolení.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-40 relative bg-black/20">
+             <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Interiér moderního bytu" class="w-full h-full object-cover opacity-10">
+            </div>
+            <div class="container mx-auto px-6 relative z-10">
+                 <div class="text-center max-w-3xl mx-auto mb-24">
+                    <div class="section-intro-line mx-auto gsap-reveal-line"></div>
+                    <h2 class="text-4xl md:text-6xl gsap-reveal">Získejte nabídku ještě dnes</h2>
+                    <p class="text-lg text-muted mt-6 gsap-reveal">Zanechte nám na sebe kontakt. Ozveme se vám co nejdříve s nabídkou na míru. 100% diskrétně, nezávazně a zdarma.</p>
+                </div>
+                 <div class="max-w-4xl mx-auto gsap-reveal">
+                    <form action="#" method="POST" class="space-y-10">
+                        <div class="grid sm:grid-cols-2 gap-10">
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-input" placeholder=" " required>
+                                <label for="name" class="form-label">Vaše jméno *</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" class="form-input" placeholder=" " required>
+                                <label for="email" class="form-label">Váš email *</label>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <input type="tel" name="phone" id="phone" class="form-input" placeholder=" ">
+                            <label for="phone" class="form-label">Telefon</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" id="message" rows="1" class="form-input" placeholder=" " required></textarea>
+                            <label for="message" class="form-label">Popište stručně vaši nemovitost, její stav a lokalitu... *</label>
+                        </div>
+                        <div class="pt-6 text-center">
+                             <button type="submit" class="cta-button">
+                                <span class="text-original">Odeslat poptávku</span>
+                                <span class="text-hover">Získat nabídku</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16">
+        <div class="container mx-auto px-6 text-center text-muted">
+             <a href="#" class="text-2xl font-display tracking-wide mb-4 inline-block text-light">
+                VÝKUPNEMOVITOSTI.cz
+            </a>
+            <p class="text-sm mb-8">Specializovaný výkup nemovitostí skupiny <span class="text-light">KOVA Group</span></p>
+             <div class="flex justify-center flex-wrap gap-x-6 gap-y-3 mb-8">
+                <a href="#about" class="footer-link">O nás</a>
+                <a href="#services" class="footer-link">Služby</a>
+                <a href="#process" class="footer-link">Jak to funguje</a>
+                <a href="#faq" class="footer-link">FAQ</a>
+                <a href="tel:+420770156156" class="footer-link">+420 770 156 156</a>
+                <a href="mailto:info@nemovitostnivykupy.cz" class="footer-link">info@nemovitostnivykupy.cz</a>
+            </div>
+            <p class="text-xs text-muted/50 mb-4">
+                V roce 2020 získala firma Výkup nemovitostí s.r.o. podporu z Evropských strukturálních a investičních fondů prostřednictvím Operačního programu Praha – pól růstu ČR. Projekt "Úprava webových stránek společnosti" je spolufinancován Evropskou unií.
+            </p>
+            <p class="text-sm">&copy; 2025 VÝKUPNEMOVITOSTI.cz | KOVA Group - Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // --- HEADER SCROLL ---
+    const header = document.querySelector('header');
+    ScrollTrigger.create({
+        start: 'top top',
+        end: 99999,
+        onUpdate: (self) => {
+            header.classList.toggle('scrolled', self.direction === 1 && self.progress > 0);
+        }
+    });
+
+    // --- SMOOTH SCROLL & VERTICAL NAV ---
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            gsap.to(window, { duration: 1.8, scrollTo: { y: targetId, offsetY: 70 }, ease: 'power3.inOut' });
+        });
+    });
+
+    // Update active dot on scroll
+    document.querySelectorAll('section').forEach(section => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle: self => {
+                if (self.isActive) {
+                    const sectionId = section.id;
+                    document.querySelectorAll('.nav-dot').forEach(dot => {
+                        dot.classList.toggle('active', dot.dataset.section === sectionId);
+                    });
+                }
+            }
+        });
+    });
+
+
+    // --- CINEMATIC TEXT REVEAL (HERO) ---
+    gsap.utils.toArray('.split-word').forEach(word => {
+        gsap.from(word.children[0], {
+            yPercent: 110,
+            duration: 1.2,
+            ease: 'power4.out',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: word,
+                start: 'top 95%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+    
+    // --- GENERAL CONTENT REVEAL ---
+    gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+        gsap.fromTo(elem, 
+            { opacity: 0, y: 60 },
+            {
+                opacity: 1, y: 0, duration: 1.5, ease: 'power3.out',
+                scrollTrigger: { trigger: elem, start: 'top 88%', toggleActions: 'play none none none' }
+            }
+        );
+    });
+
+    gsap.utils.toArray('.gsap-reveal-line').forEach(elem => {
+        gsap.fromTo(elem,
+            { scaleX: 0 },
+            {
+                scaleX: 1, duration: 1.5, ease: 'power3.out',
+                scrollTrigger: { trigger: elem, start: 'top 88%', toggleActions: 'play none none none' }
+            }
+        );
+    });
+
+    // --- PARALLAX IMAGE ---
+    gsap.utils.toArray('.parallax-img').forEach(img => {
+        gsap.to(img, {
+            yPercent: -15, ease: 'none',
+            scrollTrigger: { trigger: img.parentElement, scrub: true }
+        });
+    });
+
+    // --- HORIZONTAL SCROLLING BENEFITS SECTION ---
+    if (window.innerWidth > 768) {
+        const benefitsSection = document.querySelector("#benefits-section");
+        if (benefitsSection) {
+            let benefits = gsap.utils.toArray(".benefit-panel");
+            gsap.to(benefits, {
+                xPercent: -100 * (benefits.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#benefits-container",
+                    pin: true,
+                    scrub: 1,
+                    snap: 1 / (benefits.length - 1),
+                    end: () => "+=" + (document.querySelector("#benefits-container").offsetWidth / benefits.length)
+                }
+            });
+        }
+    }
+
+    // --- PROCESS TIMELINE ANIMATION ---
+    const timelineLine = document.querySelector('.timeline-line');
+    if(timelineLine) {
+        gsap.to(timelineLine, {
+            scaleY: 1,
+            scrollTrigger: {
+                trigger: '.timeline-line-wrapper',
+                start: 'top 60%',
+                end: 'bottom 90%',
+                scrub: true,
+            }
+        });
+    }
+    document.querySelectorAll('.timeline-step').forEach(step => {
+        ScrollTrigger.create({
+            trigger: step,
+            start: 'top center',
+            end: 'bottom center',
+            toggleClass: 'is-in-view'
+        });
+    });
+
+    // --- FAQ ACCORDION ---
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        gsap.set(answer, { maxHeight: 0 }); // Set initial state with GSAP
+
+        question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            
+            // Close all others
+            faqItems.forEach(otherItem => {
+                if (otherItem.classList.contains('open')) {
+                    otherItem.classList.remove('open');
+                    gsap.to(otherItem.querySelector('.faq-answer'), { maxHeight: 0, duration: 0.5, ease: 'power2.inOut' });
+                }
+            });
+            
+            // Toggle the clicked one
+            if (!isOpen) {
+                item.classList.add('open');
+                gsap.to(answer, { maxHeight: answer.scrollHeight, duration: 0.6, ease: 'power3.out' });
+            }
+        });
+    });
+    
+    // Auto-resize textarea in form
+    const textarea = document.querySelector('textarea.form-input');
+    if(textarea) {
+        textarea.addEventListener('input', () => {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>
